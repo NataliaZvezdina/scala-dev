@@ -86,15 +86,15 @@ object recursion {
    */
   def fib(n: Int): Int = {
 
-    def loop(n: Int, acc: Int): TailRec[Int] = n match {
+    def loop(n: Int): TailRec[Int] = n match {
       case n if n <= 2 => done(1)
       case n =>
         for {
-          r <- loop(n - 1, acc)
-          l <- loop(n - 2, acc)
+          r <- loop(n - 1)
+          l <- loop(n - 2)
         } yield r + l
     }
-    loop(n, 0).result
+    loop(n).result
   }
   println(fib(5))
 
